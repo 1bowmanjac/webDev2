@@ -14,6 +14,9 @@ body {
   text-align: left;
   text-indent: 2%;
 }
+.txtBox {
+  width: 90%;
+}
 td {
   
   border: 1px black solid;
@@ -26,4 +29,9 @@ td {
 tr, td, #mainTable{
   border: 1px solid black;
   border-collapse: collapse;
+}
+svg {
+  background-color: beige;
+  display: block;
+  margin: auto;
 }

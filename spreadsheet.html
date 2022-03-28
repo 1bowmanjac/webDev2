@@ -6,6 +6,7 @@
     <meta name="viewport" content="widtd=device-widtd, initial-scale=1.0">
     <link type="text/css" rel="stylesheet" href="spreadsheet.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src = "https://d3js.org/d3.v4.min.js"></script>
     <script src="scripts.js"></script>
     <title>Document</title>
 </head>
@@ -14,30 +15,89 @@
 <body>
     <table id="mainTable">
         <tr id ="row1">
-          <td id="00" class="header">Student ID</td>
-          <td id="01" class="columnHeader header">Asmt 1</td>
-          <td id="02" class="columnHeader header">Asmt 2</td>
-          <td id="03" class="columnHeader header">Asmt</td>
+          <td id="0,0" class="header">Student ID</td>
+          <td id="0,1" class="columnHeader header">Asmt 1</td>
+          <td id="0,2" class="columnHeader header">Asmt 2</td>
+          <td id="0,3" class="columnHeader header">Asmt 3</td>
+          <td id="0,4" class="columnHeader header">Midterm</td>
+          <td id="0,5" class="columnHeader header">Final Exam</td>
         </tr>
         <tr>
-            <td id="10" class="rowHeader header">100000000</td>
-            <td id="11" class="cell">2</td>
-            <td id="12" class="cell">4</td>
-            <td id="13" class="cell">2</td>
+            <td id="1,0" class="rowHeader header">100000000</td>
+            <td id="1,1" class="cell">92.0</td>
+            <td id="1,2" class="cell">80.0</td>
+            <td id="1,3" class="cell">100.0</td>
+            <td id="1,4" class="cell">62.5</td>
+            <td id="1,5" class="cell">81.5</td>
         </tr>
         <tr>
-            <td id="20" class="rowHeader header">100000001</td>
-            <td id="21" class="cell">3</td>
-            <td id="22" class="cell">3</td>
-            <td id="23" class="cell">3</td>
+            <td id="2,0" class="rowHeader header">100000001</td>
+            <td id="2,1" class="cell">100.0</td>
+            <td id="2,2" class="cell">85.5</td>
+            <td id="2,3" class="cell">90.0</td>
+            <td id="2,4" class="cell">75.0</td>
+            <td id="2,5" class="cell">90.25</td>
         </tr>
         <tr>
-            <td id="30" class="rowHeader header">100000002</td>
-            <td id="31" class="cell">4</td>
-            <td id="32" class="cell">4</td>
-            <td id="33" class="cell">4</td>
+            <td id="3,0" class="rowHeader header">100000002</td>
+            <td id="3,1" class="cell">80.0</td>
+            <td id="3,2" class="cell">90.5</td>
+            <td id="3,3" class="cell">90.0</td>
+            <td id="3,4" class="cell">66.5</td>
+            <td id="3,5" class="cell">68.0</td>
+          </tr>
+          <tr>
+            <td id="4,0" class="rowHeader header">100000003</td>
+            <td id="4,1" class="cell">100.0</td>
+            <td id="4,2" class="cell">100.0</td>
+            <td id="4,3" class="cell">100.0</td>
+            <td id="4,4" class="cell">98.0</td>
+            <td id="4,5" class="cell">95.5</td>
+          </tr>
+          <tr>
+            <td id="5,0" class="rowHeader header">100000004</td>
+            <td id="5,1" class="cell">100.0</td>
+            <td id="5,2" class="cell">90.0</td>
+            <td id="5,3" class="cell">100.0</td>
+            <td id="5,4" class="cell">58.5</td>
+            <td id="5,5" class="cell">72.0</td>
+          </tr>
+          <tr>
+            <td id="6,0" class="rowHeader header">100000005</td>
+            <td id="6,1" class="cell">90.5</td>
+            <td id="6,2" class="cell">81.5</td>
+            <td id="6,3" class="cell">95.5</td>
+            <td id="6,4" class="cell">65.5</td>
+            <td id="6,5" class="cell">64.0</td>
+          </tr>
+          <tr>
+            <td id="7,0" class="rowHeader header">100000006</td>
+            <td id="7,1" class="cell">40.5</td>
+            <td id="7,2" class="cell">50.5</td>
+            <td id="7,3" class="cell">65.5</td>
+            <td id="7,4" class="cell">22.5</td>
+            <td id="7,5" class="cell">51.0</td>
+          </tr>
+          <tr>
+            <td id="8,0" class="rowHeader header">100000007</td>
+            <td id="8,1" class="cell">70.0</td>
+            <td id="8,2" class="cell">75.0</td>
+            <td id="8,3" class="cell">70.0</td>
+            <td id="8,4" class="cell">55.5</td>
+            <td id="8,5" class="cell">21.0</td>
+          </tr>
+          <tr>
+            <td id="9,0" class="rowHeader header">100000008</td>
+            <td id="9,1" class="cell">80.0</td>
+            <td id="9,2" class="cell">82.5</td>
+            <td id="9,3" class="cell">65.0</td>
+            <td id="9,4" class="cell">72.5</td>
+            <td id="9,5" class="cell">88.0</td>
           </tr>
       </table>
+      <div id="svg">
+
+      </div>
 </body>
 
 
