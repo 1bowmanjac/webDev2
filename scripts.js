@@ -85,7 +85,7 @@ function loadChart(){
             .attr('x', width / 2)
             .attr('y', margin)
             .attr('text-anchor', 'middle')
-            .text('Sales by Year');
+            .text('Grade Distribution');
 
     
     // create a group (g) for the bars
