@@ -1,5 +1,6 @@
 var cellID = "00";
 var selectedNumbers = [];
+
 var freq = [
     {"grade" : 'A', "count" : 0},
     {"grade" : 'B', "count" : 0},
@@ -7,52 +8,84 @@ var freq = [
     {"grade" : 'D', "count" : 0},
     {"grade" : 'F', "count" : 0}
 ]
-
-window.onload = function() {
-
-};
-
+var cells;
 $(document).ready(function() {
-
-
-
-
-
+    loadTable();
     cells = $(".cell");
-    $(".columnHeader").click(function(){
-        let  id = $(this).attr("id");
-        let columnIndex = id.split(",");
-        selectColumn(columnIndex[1]);
 
-      }); 
-    $(".rowHeader").click(function(){
-          let id = $(this).attr("id");
-          let rowIndex = id.split(",");
-          selectRow(rowIndex[0]);
-      })
-    $(".cell").click(function(){
-        var currentCell = this;
-        var text = $(currentCell).text();
-        var child = $(currentCell).children(1);
-        console.log(child);
-        if($(child).attr("class") != "txtBox"){
-            $(currentCell).html("<input class=\"txtBox\" type=\"text\">");
-            let child = $(currentCell).children(1);
-            $(child).val(text);
-        }
-        if ($(child).attr("class") == "txtBox") {
-            $(window).keypress(function(e) {
-                var key = e.which;
-                if(key == 13){ //enter
-                    newText = $(child).val();
-                    console.log(newText);
-                    $(child).replaceWith(newText);
-                }
-            });
-        }
+
+
+    // $(".columnHeader").live('click',function(){
+    //     let  id = $(this).attr("id");
+    //     let columnIndex = id.split(",");
+    //     selectColumn(columnIndex[1]);
+
+    //   }); 
+    // $(".rowHeader").live('click',function(){
+    //       let id = $(this).attr("id");
+    //       let rowIndex = id.split(",");
+    //       selectRow(rowIndex[0]);
+    //   })
+    // $(".cell").live('click',function(){
+    //     var currentCell = this;
+    //     var text = $(currentCell).text();
+    //     var child = $(currentCell).children(1);
+    //     console.log(child);
+    //     if($(child).attr("class") != "txtBox"){
+    //         $(currentCell).html("<input class=\"txtBox\" type=\"text\">");
+    //         let child = $(currentCell).children(1);
+    //         $(child).val(text);
+    //     }
+    //     if ($(child).attr("class") == "txtBox") {
+    //         $(window).keypress(function(e) {
+    //             var key = e.which;
+    //             if(key == 13){ //enter
+    //                 newText = $(child).val();
+    //                 console.log(newText);
+    //                 $(child).replaceWith(newText);
+    //             }
+    //         });
+    //     }
         
-    })
+    // })
 });
+
+$(document).on('click',".columnHeader", function(){
+    cells = $(".cell");
+    let  id = $(this).attr("id");
+    let columnIndex = id.split(",");
+    selectColumn(columnIndex[1]);
+});
+$(document).on('click',".rowHeader", function(){
+    cells = $(".cell");
+    let id = $(this).attr("id");
+    let rowIndex = id.split(",");
+    selectRow(rowIndex[0]);
+});
+$(document).on('click',".cell", function(){
+    cells = $(".cell");
+    var currentCell = this;
+    var text = $(currentCell).text();
+    var child = $(currentCell).children(1);
+    console.log(child);
+    if($(child).attr("class") != "txtBox"){
+        $(currentCell).html("<input class=\"txtBox\" type=\"text\">");
+        let child = $(currentCell).children(1);
+        $(child).val(text);
+    }
+    if ($(child).attr("class") == "txtBox") {
+        $(window).keypress(function(e) {
+            var key = e.which;
+            if(key == 13){ //enter
+                newText = $(child).val();
+                console.log(newText);
+                $(child).replaceWith(newText);
+            }
+        });
+    }
+    
+});
+
 
 function loadChart(){
     
@@ -229,4 +262,44 @@ function selectColumn(columnIndex) {
 
     console.log(freq);
     loadChart();
+}
+function loadTable() {
+    $.ajax({
+        url:"grades.csv",
+        dataType:"text",
+        success:function(data)
+        {
+            console.log(data);
+            var gradeData = data.split('\n');
+            console.log(gradeData);
+            var column = "<td class='cell'></td>";
+            var columnHeader = "<td class='rowHeader header'></td>"
+            var row = `<tr>${columnHeader}${column}${column}${column}${column}${column}</tr>`;
+            
+            var tableString = "";
+            for (let i = 0; i < gradeData.length; i++) {
+                const row = gradeData[i];
+                var splitRow = row.split(',');
+                var rowString = "";
+                for (let j = 0; j < splitRow.length; j++) {
+                    const cell = splitRow[j];
+                    var id=`${i},${j}`;
+                    var classes = "";
+                    if(i == 0 && j == 0){
+                        classes = "header";
+                    } else if(i == 0){
+                        classes = "header columnHeader";
+                    } else if(j == 0){
+                        classes = "rowHeader header";
+                    } else {
+                        classes = "cell";
+                    }
+                    rowString += `<td id='${id}' class='${classes}'>${cell} </td>`
+
+                }
+                tableString += `<tr>${rowString}</tr>`;
+            }
+            $("table").html(`${tableString}`);
+        }
+    });
 }
